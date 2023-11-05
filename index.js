@@ -16,14 +16,23 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// user jobIO
-// pass uFlxlW7y3n0IjLMa
+// user jobIOpro
+// pass 2mJ8EIxUUNDy4F44
+
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASS);
 
 
 
 
-// const uri = "mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@jobio@cluster0.mnum3sy.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb+srv://jobIO:uFlxlW7y3n0IjLMa@jobio@cluster0.mnum3sy.mongodb.net/?retryWrites=true&w=majority";
+
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mnum3sy.mongodb.net/?retryWrites=true&w=majority`;
+
+// const uri = "mongodb+srv://jobIOpro:2mJ8EIxUUNDy4F44@cluster0.mnum3sy.mongodb.net/?retryWrites=true&w=majority";
+
+
+
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -47,6 +56,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
 
 
 
