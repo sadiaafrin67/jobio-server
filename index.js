@@ -19,8 +19,7 @@ app.use(express.json());
 // user jobIOpro
 // pass 2mJ8EIxUUNDy4F44
 
-console.log(process.env.DB_USER);
-console.log(process.env.DB_PASS);
+
 
 
 
