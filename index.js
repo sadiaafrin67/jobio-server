@@ -48,8 +48,18 @@ async function run() {
     await client.connect();
 
     const jobCollection = client.db("jobio").collection("jobs");
+    const bidcollection = client.db("jobio").collection("bids");
 
+
+    // for jobs
     app.get('/jobs', async (req, res) => {
+      const cursor = jobCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+    // my job
+    app.get ('/jobpost', async (req, res) => {
       const cursor = jobCollection.find();
       const result = await cursor.toArray();
       res.send(result);
@@ -66,6 +76,26 @@ async function run() {
     app.post('/jobs', async (req, res) => {
       const job = req.body;
       const result = await jobCollection.insertOne(job);
+      res.send(result);
+    })
+
+
+    // for bids
+    app.get ('/bids', async (req, res) => {
+      const cursor = bidcollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+    app.get('/mybid', async (req, res) => {
+      const cursor = bidcollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+    app.post('/bids', async (req, res) => {
+      const bid = req.body;
+      const result = await bidcollection.insertOne(bid);
       res.send(result);
     })
 
