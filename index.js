@@ -178,15 +178,9 @@ async function run() {
     // for bids
     app.get ('/bids',   async (req, res) => {
       console.log(req.query.email)
-      // console.log('token from client', req.cookies.token)
-      // console.log('user in the valid token', req.user)
-      // if(req.query?.email !== req.user?.email){
-      //   return res.status(403).send({message: 'Forbidden Access'})
-      // }
-
-
-
+   
       const cursor = bidcollection.find();
+      cursor.sort({ status: 1 });
       const result = await cursor.toArray();
       res.send(result);
     })
@@ -229,7 +223,7 @@ async function run() {
         }
     
         // Check if the status is either "accepted" or "rejected"
-        if (status !== 'Accept' && status !== 'Reject') {
+        if (status !== 'Accept' && status !== 'Reject' && status !== 'Complete') {
           return res.status(400).send({ error: 'Invalid status. It must be either "accepted" or "Rejected".' });
         }
     
